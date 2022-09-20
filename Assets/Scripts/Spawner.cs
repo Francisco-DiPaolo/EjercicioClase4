@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
 
     public InputField inputField;
 
-    public Transform spawnPositionWeapon;
+    public Vector3 spawnPositionWeapon;
 
     void Start()
     {
@@ -22,8 +22,12 @@ public class Spawner : MonoBehaviour
         {
             if(inputField.text == weapon.name)
             {
-                Instantiate(weapon, spawnPositionWeapon.position, transform.rotation);
+                Destroy(GameObject.FindGameObjectWithTag("Weapon"));
+                Instantiate(weapon, spawnPositionWeapon, Quaternion.identity);
+                return;
             }
         }
+
+        Debug.Log("The weapon was not found");
     }
 }
